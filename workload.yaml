@@ -1,0 +1,27 @@
+apiVersion: workload.kalypso.io/v1alpha1
+kind: Workload
+metadata:
+  name: hello-world-app
+  labels:
+    type: application
+    family: force
+spec:
+  deploymentTargets:
+    - name: functional-test
+      labels:
+        purpose: functional-test
+        edge: true
+      environment: dev
+      manifests:
+        repo: https://github.com/microsoft/kalypso-app-gitops
+        branch: dev
+        path: ./functional-test
+    - name: performance-test
+      labels:
+        purpose: performance-test
+        edge: false
+      environment: dev
+      manifests:
+        repo: https://github.com/microsoft/kalypso-app-gitops
+        branch: dev
+        path: ./performance-test        

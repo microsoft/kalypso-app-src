@@ -1,0 +1,6 @@
+app:
+  name: hello-world
+replicas: 1
+port: 8080
+image: $IMAGE_NAME:$IMAGE_TAG
+version: $VERSION

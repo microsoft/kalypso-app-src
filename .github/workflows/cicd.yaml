@@ -5,8 +5,8 @@ on:
     branches:
       - main
 
-# permissions:
-#   packages: write
+permissions:
+  packages: write
 
 env:
   SEM_VER: 0.0.1

@@ -11,7 +11,7 @@ on:
 env:
   SEM_VER: 0.0.1
   APP_NAME: hello-world
-  IMAGE_NAME: hello-world
+  IMAGE_NAME: ghcr.io/${{ github.repository }}/hello-world
 
 jobs:
   Build_Push_Image:

@@ -67,7 +67,6 @@ jobs:
       - name: Generate Manifests for Functional Tests
         run: |
           .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/functional-tests functional-tests 
-
       - name: Create PR
         run: |        
           .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/gen_manifests -d functional-tests -r ${{ secrets.MANIFESTS_REPO }} -b dev -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }} -e ${{ env.ENVIRONMENT_NAME }} -m Y         

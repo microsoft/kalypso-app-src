@@ -15,7 +15,7 @@ values_file_name='values.yaml'
 # generate-manifests.sh FOLDER_WITH_MANIFESTS FOLDER_WITH_CONFIGS GENERATED_MANIFESTS_FOLDER
 
 
-mkdir -p $2
+mkdir -p $3
 
 # Substitute env variables in Helm yaml files in the manifest folder
 for file in `find $1 -type f \( -name "values.yaml" \)`; do envsubst <"$file" > "$file"1 && mv "$file"1 "$file"; done

@@ -5,8 +5,8 @@ on:
     branches:
       - main
 
-permissions:
-  packages: write
+# permissions:
+#   packages: write
 
 env:
   SEM_VER: 0.0.1
@@ -16,6 +16,10 @@ env:
 jobs:
   Build_Push_Image:
     runs-on: ubuntu-latest
+    permissions:
+          contents: read
+          packages: write
+
     steps:
     - name: Checkout Source
       uses: actions/checkout@v3

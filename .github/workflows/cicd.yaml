@@ -1,12 +1,12 @@
+# Temporary pipeline to test the control plane transformation
+# This pipeline will be rebuilt with promotion/transformatiom approach
+
 name: cicd
 
 on:
   push:
     branches:
       - main
-
-# permissions:
-#   packages: write
 
 env:
   SEM_VER: 0.0.1

@@ -30,20 +30,20 @@ spec:
         - name: CLUSTER_NAME
           valueFrom:
               configMapKeyRef:
-                name: plarform-config
+                name: platform-config
                 key: CLUSTER_NAME
         - name: REGION
           valueFrom:
               configMapKeyRef:
-                name: plarform-config
+                name: platform-config
                 key: REGION
         - name: ENVIRONMENT
           valueFrom:
               configMapKeyRef:
-                name: plarform-config
+                name: platform-config
                 key: ENVIRONMENT
         - name: DATABASE_URL
           valueFrom:
               configMapKeyRef:
-                name: plarform-config
+                name: platform-config
                 key: DATABASE_URL                

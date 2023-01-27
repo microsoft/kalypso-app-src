@@ -8,18 +8,18 @@ metadata:
 spec:
   deploymentTargets:
     - name: functional-test
-      labels:
-        purpose: functional-test
-        edge: true
+      # labels:
+      #   purpose: functional-test
+      #   edge: true
       environment: dev
       manifests:
         repo: https://github.com/microsoft/kalypso-app-gitops
         branch: dev
         path: ./functional-test
     - name: performance-test
-      labels:
-        purpose: performance-test
-        edge: false
+      # labels:
+      #   purpose: performance-test
+      #   edge: false
       environment: dev
       manifests:
         repo: https://github.com/microsoft/kalypso-app-gitops

@@ -1,4 +1,4 @@
-apiVersion: workload.kalypso.io/v1alpha1
+apiVersion: scheduler.kalypso.io/v1alpha1
 kind: Workload
 metadata:
   name: hello-world-app

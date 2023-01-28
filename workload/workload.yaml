@@ -10,7 +10,7 @@ spec:
     - name: functional-test
       labels:
         purpose: functional-test
-        edge: true
+        edge: "true"
       environment: dev
       manifests:
         repo: https://github.com/microsoft/kalypso-app-gitops
@@ -19,7 +19,7 @@ spec:
     - name: performance-test
       labels:
         purpose: performance-test
-        edge: false
+        edge: "false"
       environment: dev
       manifests:
         repo: https://github.com/microsoft/kalypso-app-gitops

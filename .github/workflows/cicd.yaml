@@ -16,9 +16,7 @@ env:
 jobs:
   Build_Push_Image:
     runs-on: ubuntu-latest
-    permissions:
-          contents: read
-          packages: write
+    permissions: write-all
 
     steps:
     - name: Checkout Source

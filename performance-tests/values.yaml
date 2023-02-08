@@ -1,2 +1,2 @@
-replicas: 2
+replicas: 3
 port: 8085

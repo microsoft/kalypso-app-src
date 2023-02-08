@@ -96,7 +96,7 @@ jobs:
           .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/performance-tests performance-tests 
       - name: Create PR
         run: |        
-          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/functional-test -d functional-test -r ${{ secrets.MANIFESTS_REPO }} -b stage -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }}  -m Y
+          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/functional-test -d functional-test -r ${{ secrets.MANIFESTS_REPO }} -b stage -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }}  -m N
 
 
 

@@ -88,12 +88,9 @@ jobs:
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
           VERSION=$IMAGE_TAG
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Generate Manifests for Functional Tests
+      - name: Generate Manifests for UAT
         run: |
-          .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/functional-tests manifests/functional-test 
-      - name: Generate Manifests for Performance Tests
-        run: |
-          .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/performance-tests manifests/performance-tests 
+          .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/uat-tests manifests/uat-test 
       - name: Create PR
         run: |        
           .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d . -r ${{ secrets.MANIFESTS_REPO }} -b stage -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }}  -m N

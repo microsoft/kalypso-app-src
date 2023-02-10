@@ -65,10 +65,10 @@ jobs:
           .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/functional-tests manifests/functional-test 
       - name: Generate Manifests for Performance Tests
         run: |
-          .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/performance-tests manifests/performance-tests 
+          .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/performance-tests manifests/performance-test 
       - name: Create PR
         run: |        
-          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d . -r ${{ secrets.MANIFESTS_REPO }} -b dev -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }} -m Y
+          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d functional-test -r ${{ secrets.MANIFESTS_REPO }} -b dev -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }} -m Y
   
   Deploy_To_Stage:
       runs-on: ubuntu-latest

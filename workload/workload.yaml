@@ -24,4 +24,12 @@ spec:
       manifests:
         repo: https://github.com/microsoft/kalypso-app-gitops
         branch: dev
-        path: ./performance-test        
+        path: ./performance-test
+    - name: uat-test
+      labels:
+        purpose: uat-test
+      environment: stage
+      manifests:
+        repo: https://github.com/microsoft/kalypso-app-gitops
+        branch: stage
+        path: ./uat-test                 

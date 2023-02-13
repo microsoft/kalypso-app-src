@@ -1,6 +1,3 @@
-# Temporary pipeline to test the control plane transformation
-# This pipeline will be rebuilt with promotion/transformatiom approach
-
 name: cicd
 
 on:

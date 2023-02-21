@@ -1,6 +1,6 @@
 # Application Source
 
-Application source repo contains the source code including manifest templates that will be used to generate manifests for the environments. It also contains environment specific configurations in Configuration Branches so that config updates get through the Git flow as well. Alternatively, Configuration Branches may be stored in a separate configuration repository or outside of Git (e.g., in environment secrets and/or Azure Key Vaults). 
+[Kalypso](https://github.com/microsoft/kalypso) Application source repo contains the source code including manifest templates that will be used to generate manifests for the environments. It also contains environment specific configurations in Configuration Branches so that config updates get through the Git flow as well. Alternatively, Configuration Branches may be stored in a separate configuration repository or outside of Git (e.g., in environment secrets and/or Azure Key Vaults). 
 
 ## Contributing
 

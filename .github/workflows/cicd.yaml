@@ -129,13 +129,6 @@ jobs:
       - name: Generate Manifests for UAT
         run: |
           .github/workflows/utils/generate-manifests.sh ${{ github.workspace }}/helm ${{ github.workspace }}/configs/uat-tests manifests/uat-test 
-      - name: Generate Manifests for Integration Tests
-        run: |
-          .github/workflows/utils/generate-ansible-manifests.sh ${{ github.workspace }}/ansible manifests/int-test 
-          cp ${{ github.workspace }}/configs/int-tests/* manifests/int-test/
-        env:
-          CONFIG_FILE: app-config.sh
-          COMMAND: sample          
       - name: Create PR
         run: |        
           .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d . -r ${{ secrets.MANIFESTS_REPO }} -b stage -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }}  -m N

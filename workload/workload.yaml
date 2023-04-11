@@ -13,7 +13,9 @@ spec:
         edge: "true"
       environment: dev
       manifests:
-        repo: https://github.com/microsoft/kalypso-app-gitops
+        storage: git
+        type: kustomize            
+        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
         branch: dev
         path: ./functional-test
     - name: performance-test
@@ -22,14 +24,28 @@ spec:
         edge: "false"
       environment: dev
       manifests:
-        repo: https://github.com/microsoft/kalypso-app-gitops
+        storage: git
+        type: kustomize            
+        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
         branch: dev
         path: ./performance-test
+    - name: int-test
+      labels:
+        purpose: int-test
+      environment: dev
+      manifests:
+        storage: git
+        type: ansible            
+        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
+        branch: dev
+        path: ./int-test/install.yml
     - name: uat-test
       labels:
         purpose: uat-test
       environment: stage
       manifests:
-        repo: https://github.com/microsoft/kalypso-app-gitops
+        storage: git
+        type: kustomize            
+        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
         branch: stage
         path: ./uat-test                 

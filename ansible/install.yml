@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+  - debug: msg="Install application"
+  - name: install application
+    ansible.builtin.import_tasks: /opt/kalypso/install-deb-package.yml
+    vars:
+      package_name: $PACKAGE_NAME
+      package_storage_url: $PACKAGE_STORAGE_URL
+      app_config_file: $CONFIG_FILE    
+      command: $COMMAND
+      args: "$ARGS"

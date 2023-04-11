@@ -15,7 +15,7 @@ spec:
       manifests:
         storage: git
         type: kustomize            
-        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
+        repo: https://github.com/kaizentm/kalypso-app-gitops
         branch: dev
         path: ./functional-test
     - name: performance-test
@@ -26,7 +26,7 @@ spec:
       manifests:
         storage: git
         type: kustomize            
-        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
+        repo: https://github.com/kaizentm/kalypso-app-gitops
         branch: dev
         path: ./performance-test
     - name: int-test
@@ -36,7 +36,7 @@ spec:
       manifests:
         storage: git
         type: ansible            
-        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
+        repo: https://github.com/kaizentm/kalypso-app-gitops
         branch: dev
         path: ./int-test/install.yml
     - name: uat-test
@@ -46,6 +46,6 @@ spec:
       manifests:
         storage: git
         type: kustomize            
-        repo: https://github.com/eedorenko/kalypso-oci-app-gitops
+        repo: https://github.com/kaizentm/kalypso-app-gitops
         branch: stage
         path: ./uat-test                 

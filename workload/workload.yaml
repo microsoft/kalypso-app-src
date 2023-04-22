@@ -38,7 +38,7 @@ spec:
         type: ansible            
         repo: https://github.com/kaizentm/kalypso-app-gitops
         branch: dev
-        path: ./int-test/install.yml
+        path: ./int-test/install287.yml
     - name: uat-test
       labels:
         purpose: uat-test

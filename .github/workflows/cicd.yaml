@@ -100,7 +100,7 @@ jobs:
 
       - name: Create PR
         run: |        
-          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d . -r ${{ secrets.MANIFESTS_REPO }} -b dev -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }} -m N
+          .github/workflows/utils//create-pr.sh -s ${{ github.workspace }}/manifests -d . -r ${{ secrets.MANIFESTS_REPO }} -b dev -i ${{ github.run_number }} -t ${{ secrets.MANIFESTS_TOKEN }} -m Y
     
   Deploy_To_Stage:
       runs-on: ubuntu-latest

@@ -28,7 +28,7 @@ jobs:
     - name: Generate Image Tag
       id: generate_image_tag
       run: |
-          VERSION=${{ env.SEM_VER }}-${{ github.run_number }}
+          VERSION=${{ vars.SEM_VER }}-${{ github.run_number }}
           echo "VERSION=$VERSION" >> $GITHUB_ENV     
     - name: Build and Push to ghcr
       uses: docker/build-push-action@v2

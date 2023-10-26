@@ -57,7 +57,7 @@ jobs:
         clean: false
     - name: Start CD
       run: |
-          gh workflow run cd.yml -f commit_id="$PROMOTED_COMMIT_ID" -f version="$VERSION"          
+          gh workflow run cd.yaml -f commit_id="$PROMOTED_COMMIT_ID" -f version="$VERSION" -r ${{ github.ref_name }}         
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PROMOTED_COMMIT_ID: ${{ github.sha }}

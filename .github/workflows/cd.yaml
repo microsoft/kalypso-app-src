@@ -1,0 +1,100 @@
+name: deploy
+ 
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_id:
+        required: true
+        type: string
+        description: 'Source commit_id (e.g. 62d1d965735a80afca35da9ec8d8aeb39db2da6c)'
+      environment:
+        required: false
+        type: string
+        description: 'Environment to deploy to (e.g. d2)'
+      promotion:
+        required: false
+        type: string
+        default: y
+        description: 'If the change is a subject for the promotion (e.g. Y)'
+      version:
+        required: true
+        type: string
+        description: 'Version (e.g. 0.0.150-1)'
+
+env:
+  IMAGE_REPO: ghcr.io/${{ github.repository }}/${{ vars.APP_NAME }}
+
+jobs:
+  Deploy:
+      name: "Deploy"
+      runs-on: ubuntu-latest
+      environment: ${{ inputs.environment }}
+      steps:      
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.commit_id }}
+      - name: Checkout Configs
+        uses: actions/checkout@v2.3.4
+        with:
+          repository: ${{ vars.CONFIGS_REPO }}
+          ref: ${{ inputs.environment }}
+          path: configs
+          token: ${{ secrets.CD_BOOTSTRAP_TOKEN }}        
+      
+      - name: Get Config Commit Id
+        run: |
+            CONFIG_COMMIT_ID=$(git rev-parse HEAD)
+            echo "CONFIG_COMMIT_ID=$CONFIG_COMMIT_ID" >> $GITHUB_ENV
+        working-directory: configs
+
+      - name: Set Image Name, Package Name  and Version
+        run: |
+          IMAGE_NAME=$IMAGE_REPO:$VERSION
+          PACKAGE_NAME=$APP_NAME-$VERSION.deb
+
+          echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        env:
+          VERSION: ${{ inputs.version }} 
+          APP_NAME: ${{ vars.APP_NAME }}
+      
+
+      # - name: Generate Manifests
+      #   run: |
+      #     .github/workflows/utils/generate-manifests.sh "$HELM_PATH" "$CONFIGS_PATH" "$MANIFESTS_PATH"
+      #   env:
+      #     HELM_PATH: ${{ github.workspace }}/helm
+      #     CONFIGS_PATH: ${{ github.workspace }}/configs  
+      #     MANIFESTS_PATH: ${{ github.workspace }}/manifests
+      #     WORKLOAD: ${{ github.event.repository.name }}
+      #     ENVIRONMENT: ${{ inputs.environment }}
+      #     SOURCE_REPO: ${{ github.event.repository.full_name }}
+      #     SOURCE_BRANCH: ${{ github.event.repository.default_branch }}
+      #     GITOPS_REPO: ${{ vars.MANIFESTS_REPO }}
+      #     VERSION: ${{ env.VERSION }}
+      #     SRC_COMMIT: ${{ inputs.commit_id }}          
+
+
+      # - name: Create PR
+      #   run: |
+      #     promoted=$(if [ ${{ inputs.promotion }} == "y" ]; then echo "promoted"; fi)          
+      #     .github/workflows/utils/create-pr.sh -s "$MANIFESTS_PATH" -d . -r "$MANIFESTS_REPO" -b "$ACTIVE_ENVIRONMENT" -i "$IMAGE_NAME" -t "$TOKEN" -e "$ACTIVE_ENVIRONMENT" -m N -l $promoted
+      #   env:
+      #     PROMOTED_COMMIT_ID: ${{ inputs.commit_id }}
+      #     CONFIG_COMMIT_ID: ${{ env.CONFIG_COMMIT_ID }} # from the Get Config Commit Id step
+      #     MANIFESTS_PATH: ${{ github.workspace }}/manifests
+      #     MANIFESTS_REPO: https://github.com/${{ vars.MANIFESTS_REPO }}
+      #     TOKEN: ${{ secrets.CD_BOOTSTRAP_TOKEN }}
+      #     ACTIVE_ENVIRONMENT: ${{ inputs.environment }}
+
+      # - name: Update Commit Status
+      #   run: |
+      #       .github/workflows/utils/update-status.sh "pending" "Promoted" "$ACTIVE_ENVIRONMENT"        
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     PROMOTED_COMMIT_ID: ${{ inputs.commit_id }}
+      #     ACTIVE_ENVIRONMENT: ${{ inputs.environment }}          
+      

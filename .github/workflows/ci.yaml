@@ -12,7 +12,7 @@ env:
   PACKAGE_STORAGE_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
 jobs:
-  Build_Push_Image:
+  CI:
     runs-on: ubuntu-latest
     permissions: write-all
 

@@ -4,6 +4,9 @@ metadata:
   name: {{  .Values.app.name}}-deployment
   annotations:
     version: {{  .Values.version}}
+  {{ if .Values.namespace }}    
+  namespace: {{  .Values.namespace}}
+  {{ end }}    
 spec:
   strategy: 
     type: Recreate      
